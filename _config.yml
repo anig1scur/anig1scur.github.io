@@ -3,13 +3,13 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Ac3r
+title: Ac3r's Blog
 subtitle: lol
-description: Whatever comes to mind
+description: Whatever comes to mind （瞎写）
 keywords:
 author: Piggy
 language: en
-timezone: ''
+timezone: 'Asia/Shanghai'
 
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
@@ -105,7 +105,7 @@ deploy:
   repo: git@github.com:anig1scur/anig1scur.github.io.git
   branch: master
 
-favicon: images/a.ico
+favicon: /favicon.ico
 
 
 # RSS

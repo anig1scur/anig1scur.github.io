@@ -32,7 +32,7 @@ tags:
 
 虚拟机信息
 
-![](0x0B HoneyPot/kali_v.png)
+![](0x0b-honey-pot/kali_v.png)
 
 #### 环境搭建 (虚拟机网络为 bridge)
 
@@ -85,7 +85,7 @@ cd ..
 bin/cowrie start
 ```
 
-![](0x0B HoneyPot/cowrie_start.png)
+![](0x0b-honey-pot/cowrie_start.png)
 
 **端口重定向**
 
@@ -100,7 +100,7 @@ sudo iptables -t nat -A PREROUTING -p tcp --dport 22 -j REDIRECT --to-port 2222
 
 ```
 
-![](0x0B HoneyPot/iptables.png)
+![](0x0b-honey-pot/iptables.png)
 
 **安装 第三方可视化 mysql**
 
@@ -132,7 +132,7 @@ source ./mysql.sql;
 exit
 ```
 结果如下,它们初始均为空
-![](0x0B HoneyPot/mysql.png)
+![](0x0b-honey-pot/mysql.png)
 
 ```
 # 重启服务
@@ -144,7 +144,7 @@ cd
 
 报错信息为
 
-![](0x0B HoneyPot/already.png)
+![](0x0b-honey-pot/already.png)
 也就是 `[output_jsonlog]` 字段`enabled`重复
 
 ```
@@ -154,7 +154,7 @@ cat ./cowrie/var/log/cowrie/cowrie.log
 
 可以看到 cowrie 加载到 mysql 服务已经启动
 
-![](0x0B HoneyPot/sql.png)
+![](0x0b-honey-pot/sql.png)
 
 #### 模拟攻击&观察
 
@@ -167,52 +167,52 @@ cat ./cowrie/var/log/cowrie/cowrie.log
 _攻击者方结果_
 
 - `-sN; -sF; -sX`结果一致
-  ![](0x0B HoneyPot/fxn.png)
+  ![](0x0b-honey-pot/fxn.png)
   分析：根据 nmap 判定端口状态的规则:根据 RFC 中对端口判定的漏洞，当发送不含 SYN, RST, or ACK 标志的包时，如果目标端口关闭，将返回 RST，如果端口打开则无响应。若目标系统存在该漏洞则会暴露端口状态。iptables 设置端口 22 重定向至 2222 之后,由于
 
   > The key advantage to these scan types is that they can sneak through certain non-stateful firewalls and packet filtering routers. Such firewalls try to prevent incoming TCP connections (while allowing outbound ones) by blocking any TCP packets with the SYN bit set and ACK cleared.
 
   `sN,sF,sX`扫描类型的包穿透了防火墙的过滤,因此关闭的 22 端口会直接返回 RST 包,而正常开放的 2222 端口不会有任何响应,与nmap判定结果相符
 
-  ![](0x0B HoneyPot/nmap_sN.png)
+  ![](0x0b-honey-pot/nmap_sN.png)
 
 * `-sS`
 
   - `sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2222` 结果如下:
 
-    ![](0x0B HoneyPot/2222-filtered.png)
+    ![](0x0b-honey-pot/2222-filtered.png)
 
     分析：该类型包到达端口 22 被防火墙转发至 2222 后有相应返回的 ACK 包,会被 nmap 确认为端口开放,由于`--max-retries 0`如果则在端口上只发送一次数据包，不会进行重试。可以看到 22 端口在返回一个正确 ACK 包之后又返回了一个被 wireshark 认为是`Out-Of-Order`(经多次测试均是此结果),**本来应该是 2222 返回的包为什么会被 22 端口来返回呢？**
 
-    ![](0x0B HoneyPot/nmap_sS_max0.png)
+    ![](0x0b-honey-pot/nmap_sS_max0.png)
 
   - `sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2222 -T2`
 
     当修改`timing mode`为 T2 以较为轻柔的方式来扫描时,可以得到两端口均开放的结果如下:
 
-    ![](0x0B HoneyPot/T2.png)
+    ![](0x0b-honey-pot/T2.png)
 
     一个猜测是在 port A 被`redirect`至 port B 设置下,*一定时间*内`iptables`会无脑将 port B 返回的包转发至 port A 作为出口,待查证
 
-    ![](0x0B HoneyPot/T2_Sneaky.png)
+    ![](0x0b-honey-pot/T2_Sneaky.png)
 
   - `sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2221`结果如下:
-    ![](0x0B HoneyPot/2221.png)
+    ![](0x0b-honey-pot/2221.png)
 
     分析:当然,正常开放另一个端口可以得到相同结果,`nc -tlp 2221`开启一个端口`2221`,可以在下图看到 22 和 2221 端口均正常返回 ACK
 
-    ![](0x0B HoneyPot/22_2221.png)
+    ![](0x0b-honey-pot/22_2221.png)
 
     将`--max-retries`改为大于 0 的数值或者去掉该参数(默认>0)之后与`-sT`扫描结果一致
 
 - `-sT`  
   当采用此种扫描方式时,不管是设置 max-retry 为 0,还是修改 timing mode 使更粗暴,得到的结果均一致:22 和 2222 端口开放
 
-  ![](0x0B HoneyPot/sT_max0.png)
+  ![](0x0b-honey-pot/sT_max0.png)
 
   此结果让上面的推测不太站得住脚,因为两端口均正常建立了连接:
 
-  ![](0x0B HoneyPot/tcp_connect.png)
+  ![](0x0b-honey-pot/tcp_connect.png)
 
   **它和上面 -sS --max-retries 0 扫描产生差异结果原因？**
 
@@ -228,7 +228,7 @@ sudo nmap 192.168.56.109 -sV #version detect
 ```
 
 记录如下：
-![](0x0B HoneyPot/nmap.png)
+![](0x0b-honey-pot/nmap.png)
 
 只有完成三次握手类型得到了记录,与 session 一词隐含的“连接”意义相符。猜想`cowrie`使用的库判断一次 session 较为严格:调用了系统调用 `connect` 才会被记录(需要操作系统底层的知识还没来得及学)
 
@@ -244,11 +244,11 @@ $anything you like
 
 ssh 时测试的记录可在`auth`表中查看：
 
-![](0x0B HoneyPot/sshtest.png)
+![](0x0b-honey-pot/sshtest.png)
 
 tty 输入的记录可在`input`表查看：
 
-![](0x0B HoneyPot/input.png)
+![](0x0b-honey-pot/input.png)
 
 #### 辨别蜜罐
 **易突破**
@@ -260,11 +260,11 @@ tty 输入的记录可在`input`表查看：
   
   如图,两次ping的结果时间差一致
 
-    ![](0x0B HoneyPot/ping.png)
+    ![](0x0b-honey-pot/ping.png)
 - apt-get  
   一个显然不存在的包成功install
 
-  ![](0x0B HoneyPot/aptget.png)
+  ![](0x0b-honey-pot/aptget.png)
 
   
 ### reference
