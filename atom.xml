@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Ac3r</title>
+  <title>Ac3r&#39;s Blog</title>
   <icon>http://r.piggy.lol/icon.png</icon>
   <subtitle>lol</subtitle>
   <link href="http://r.piggy.lol/atom.xml" rel="self"/>
   
   <link href="http://r.piggy.lol/"/>
-  <updated>2024-01-08T16:11:34.888Z</updated>
+  <updated>2024-01-08T17:23:18.442Z</updated>
   <id>http://r.piggy.lol/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://r.piggy.lol/2024/01/09/0x0b-honey-pot/iptables.png/"/>
+    <id>http://r.piggy.lol/2024/01/09/0x0b-honey-pot/iptables.png/</id>
+    <published>2024-01-08T17:23:18.269Z</published>
+    <updated>2024-01-08T17:23:18.442Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h1 id=&quot;x2F-home-x2F-ai-x2F-study-x2F-hexo-x2F-source-x2F-posts-x2F-0x0b-honey-pot-x2F-iptables-png&quot;&gt;&lt;a href=&quot;#x2F-home-x2F-ai-x2F-study-x2F-hexo-x2F-source-x2F-posts-x2F-0x0b-honey-pot-x2F-iptables-png&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>用 Latex 写一个技术合同模板</title>
@@ -225,10 +246,10 @@
   
   <entry>
     <title>常见蜜罐体验和探索</title>
-    <link href="http://r.piggy.lol/2020/01/11/0x0B%20HoneyPot/"/>
-    <id>http://r.piggy.lol/2020/01/11/0x0B%20HoneyPot/</id>
-    <published>2020-01-10T18:46:25.000Z</published>
-    <updated>2022-05-29T05:01:15.107Z</updated>
+    <link href="http://r.piggy.lol/2020/01/10/0x0b-honey-pot/"/>
+    <id>http://r.piggy.lol/2020/01/10/0x0b-honey-pot/</id>
+    <published>2020-01-10T05:46:25.000Z</published>
+    <updated>2024-01-08T17:23:23.715Z</updated>
     
     
       
@@ -251,28 +272,28 @@
 &lt;li&gt;（可选）基于 &lt;a href=&quot;https://github.com/thinkst/canarytokens&quot;&gt;canarytokens&lt;/a&gt; 搭建蜜信实验环境进行自由探索型实验；&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id=&quot;实验过程&quot;&gt;&lt;a href=&quot;#实验过程&quot; class=&quot;headerlink&quot; title=&quot;实验过程&quot;&gt;&lt;/a&gt;实验过程&lt;/h2&gt;&lt;h3 id=&quot;中等交互蜜罐-Cowrie&quot;&gt;&lt;a href=&quot;#中等交互蜜罐-Cowrie&quot; class=&quot;headerlink&quot; title=&quot;中等交互蜜罐 Cowrie&quot;&gt;&lt;/a&gt;中等交互蜜罐 &lt;code&gt;Cowrie&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;虚拟机信息&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/kali_v.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/kali_v.png&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;环境搭建-虚拟机网络为-bridge&quot;&gt;&lt;a href=&quot;#环境搭建-虚拟机网络为-bridge&quot; class=&quot;headerlink&quot; title=&quot;环境搭建 (虚拟机网络为 bridge)&quot;&gt;&lt;/a&gt;环境搭建 (虚拟机网络为 bridge)&lt;/h4&gt;&lt;p&gt;照&lt;a href=&quot;https://cowrie.readthedocs.io/en/latest/INSTALL.html&quot;&gt;官方步骤&lt;/a&gt;搭建&lt;/p&gt;
 &lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;step 1: On debian based systems,For a Python3 based environment:&lt;br&gt;&lt;br&gt;sudo apt-get install git python-virtualenv libssl-dev libffi-dev build-essential libpython3-dev python3-minimal authbind virtualenv&lt;br&gt;&lt;br&gt;Step 2: Create a user account&lt;br&gt;&lt;br&gt;sudo adduser --disabled-password cowrie&lt;br&gt;sudo su - cowrie&lt;br&gt;&lt;br&gt;Step 3: Clone cowrie&lt;br&gt;&lt;br&gt;git &lt;span class=&quot;hljs-built_in&quot;&gt;clone&lt;/span&gt; http://github.com/cowrie/cowrie&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; cowrie&lt;br&gt;&lt;br&gt;Step 4: Setup Virtual Environment and active it&lt;br&gt;&lt;br&gt;virtualenv --python=python3 cowrie-env&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;source&lt;/span&gt; cowrie-env/bin/activate&lt;br&gt;pip install --upgrade pip&lt;br&gt;pip install --upgrade -r requirements.txt&lt;br&gt;&lt;br&gt;Step 5: Configure cowrie.cfg&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; etc/&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; cowrie.cfg.dist cowrie.cfg&lt;br&gt;vim ./cowrie.cfg &lt;span class=&quot;hljs-comment&quot;&gt;#配置蜜罐主机信息&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# (default: svr04)&lt;/span&gt;&lt;br&gt;hostname = anig04&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#　方便观察log 这里配置下sql&lt;/span&gt;&lt;br&gt;[output_mysql] &lt;span class=&quot;hljs-comment&quot;&gt;#前面默认的注释符要去掉不然 twisted 不会parse了&lt;/span&gt;&lt;br&gt;enabled = &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;&lt;br&gt;host = localhost&lt;br&gt;database = cowrie&lt;br&gt;username = cowrie&lt;br&gt;password = aniglalala&lt;br&gt;port = 3306&lt;br&gt;debug = &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;&lt;br&gt;&lt;br&gt;Step 6: Starting Cowrie&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; ..&lt;br&gt;bin/cowrie start&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/cowrie_start.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/cowrie_start.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;端口重定向&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Make Cowrie accessible on the default SSH port (22)&lt;/p&gt;
 &lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;.iptables&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#iptables端口转发属于系统范围，需要作为root身份执行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;exit&lt;/span&gt;&lt;br&gt;sudo iptables -t nat -A PREROUTING -p tcp --dport &lt;span class=&quot;hljs-number&quot;&gt;22&lt;/span&gt; -j REDIRECT --to-port &lt;span class=&quot;hljs-number&quot;&gt;2222&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/iptables.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/iptables.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;安装 第三方可视化 mysql&lt;/strong&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;＃root 用户下&lt;br&gt;＃官方建议的 mysql-server 被遗弃了这里改成mariadb&lt;br&gt;&lt;br&gt;sudo apt-get install libmariadb-dev&lt;br&gt;su - cowrie&lt;br&gt;source cowrie&lt;span class=&quot;hljs-regexp&quot;&gt;/cowrie-env/&lt;/span&gt;bin/activate&lt;br&gt;pip install mysqlclient&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#开启服务，会被要求输入root用户的密码&lt;/span&gt;&lt;br&gt;systemctl start mariadb&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 默认无密码 直接回车&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 创建用户 cowrie&lt;/span&gt;&lt;br&gt;mysql -u root -p&lt;br&gt;GRANT ALL ON cowrie.* TO cowrie@localhost IDENTIFIED BY &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;aniglalala&amp;#x27;&lt;/span&gt;;&lt;br&gt;flush privileges;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;exit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 进入存放sql文件的目录下&lt;/span&gt;&lt;br&gt;cd docs&lt;span class=&quot;hljs-regexp&quot;&gt;/sql/&lt;/span&gt;&lt;br&gt;mysql -u cowrie -p&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 输入自己的密码`aniglalala`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 建表&lt;/span&gt;&lt;br&gt;use cowrie;&lt;br&gt;source ./mysql.sql;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;exit&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
-&lt;p&gt;结果如下,它们初始均为空&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/mysql.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;结果如下,它们初始均为空&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/mysql.png&quot;&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 重启服务&lt;/span&gt;&lt;br&gt;cd&lt;br&gt;.&lt;span class=&quot;hljs-regexp&quot;&gt;/cowrie/&lt;/span&gt;bin/cowrie restart&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 &lt;p&gt;这里出了点小插曲就是 &lt;code&gt;#[output_mysql]&lt;/code&gt; 前面的&lt;code&gt;#&lt;/code&gt;没有去掉，发现重启失败&lt;/p&gt;
 &lt;p&gt;报错信息为&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/already.png&quot;&gt;&lt;br&gt;也就是 &lt;code&gt;[output_jsonlog]&lt;/code&gt; 字段&lt;code&gt;enabled&lt;/code&gt;重复&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/already.png&quot;&gt;&lt;br&gt;也就是 &lt;code&gt;[output_jsonlog]&lt;/code&gt; 字段&lt;code&gt;enabled&lt;/code&gt;重复&lt;/p&gt;
 &lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#验证mysql服务开启&lt;/span&gt;&lt;br&gt;cat .&lt;span class=&quot;hljs-regexp&quot;&gt;/cowrie/&lt;/span&gt;var&lt;span class=&quot;hljs-regexp&quot;&gt;/log/&lt;/span&gt;cowrie/cowrie.log&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 &lt;p&gt;可以看到 cowrie 加载到 mysql 服务已经启动&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/sql.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/sql.png&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;模拟攻击-amp-观察&quot;&gt;&lt;a href=&quot;#模拟攻击-amp-观察&quot; class=&quot;headerlink&quot; title=&quot;模拟攻击&amp;amp;观察&quot;&gt;&lt;/a&gt;模拟攻击&amp;amp;观察&lt;/h4&gt;&lt;ul&gt;
 &lt;li&gt;网络拓扑 host only(1.测试安全 2.减少包流量方便观察)&lt;ul&gt;
 &lt;li&gt;Attacker &lt;code&gt;192.168.56.1&lt;/code&gt;&lt;/li&gt;
@@ -283,31 +304,31 @@
 &lt;p&gt;&lt;strong&gt;nmap&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;em&gt;攻击者方结果&lt;/em&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;-sN; -sF; -sX&lt;/code&gt;结果一致&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/fxn.png&quot;&gt;&lt;br&gt;分析：根据 nmap 判定端口状态的规则:根据 RFC 中对端口判定的漏洞，当发送不含 SYN, RST, or ACK 标志的包时，如果目标端口关闭，将返回 RST，如果端口打开则无响应。若目标系统存在该漏洞则会暴露端口状态。iptables 设置端口 22 重定向至 2222 之后,由于&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;-sN; -sF; -sX&lt;/code&gt;结果一致&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/fxn.png&quot;&gt;&lt;br&gt;分析：根据 nmap 判定端口状态的规则:根据 RFC 中对端口判定的漏洞，当发送不含 SYN, RST, or ACK 标志的包时，如果目标端口关闭，将返回 RST，如果端口打开则无响应。若目标系统存在该漏洞则会暴露端口状态。iptables 设置端口 22 重定向至 2222 之后,由于&lt;/p&gt;
 &lt;blockquote&gt;
 &lt;p&gt;The key advantage to these scan types is that they can sneak through certain non-stateful firewalls and packet filtering routers. Such firewalls try to prevent incoming TCP connections (while allowing outbound ones) by blocking any TCP packets with the SYN bit set and ACK cleared.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;sN,sF,sX&lt;/code&gt;扫描类型的包穿透了防火墙的过滤,因此关闭的 22 端口会直接返回 RST 包,而正常开放的 2222 端口不会有任何响应,与nmap判定结果相符&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/nmap_sN.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/nmap_sN.png&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;-sS&lt;/code&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2222&lt;/code&gt; 结果如下:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/2222-filtered.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/2222-filtered.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;分析：该类型包到达端口 22 被防火墙转发至 2222 后有相应返回的 ACK 包,会被 nmap 确认为端口开放,由于&lt;code&gt;--max-retries 0&lt;/code&gt;如果则在端口上只发送一次数据包，不会进行重试。可以看到 22 端口在返回一个正确 ACK 包之后又返回了一个被 wireshark 认为是&lt;code&gt;Out-Of-Order&lt;/code&gt;(经多次测试均是此结果),&lt;strong&gt;本来应该是 2222 返回的包为什么会被 22 端口来返回呢？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/nmap_sS_max0.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/nmap_sS_max0.png&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2222 -T2&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;当修改&lt;code&gt;timing mode&lt;/code&gt;为 T2 以较为轻柔的方式来扫描时,可以得到两端口均开放的结果如下:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/T2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/T2.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;一个猜测是在 port A 被&lt;code&gt;redirect&lt;/code&gt;至 port B 设置下,&lt;em&gt;一定时间&lt;/em&gt;内&lt;code&gt;iptables&lt;/code&gt;会无脑将 port B 返回的包转发至 port A 作为出口,待查证&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/T2_Sneaky.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/T2_Sneaky.png&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;&lt;p&gt;&lt;code&gt;sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2221&lt;/code&gt;结果如下:&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/2221.png&quot;&gt;&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2221&lt;/code&gt;结果如下:&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/2221.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;分析:当然,正常开放另一个端口可以得到相同结果,&lt;code&gt;nc -tlp 2221&lt;/code&gt;开启一个端口&lt;code&gt;2221&lt;/code&gt;,可以在下图看到 22 和 2221 端口均正常返回 ACK&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/22_2221.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/22_2221.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;将&lt;code&gt;--max-retries&lt;/code&gt;改为大于 0 的数值或者去掉该参数(默认&amp;gt;0)之后与&lt;code&gt;-sT&lt;/code&gt;扫描结果一致&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
@@ -315,35 +336,35 @@
 &lt;/ul&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;&lt;code&gt;-sT&lt;/code&gt;&lt;br&gt;当采用此种扫描方式时,不管是设置 max-retry 为 0,还是修改 timing mode 使更粗暴,得到的结果均一致:22 和 2222 端口开放&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/sT_max0.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/sT_max0.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;此结果让上面的推测不太站得住脚,因为两端口均正常建立了连接:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/tcp_connect.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/tcp_connect.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;它和上面 -sS –max-retries 0 扫描产生差异结果原因？&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;em&gt;蜜罐方结果&lt;/em&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs nginx&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# (不完全测试)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# nmap只有以下类型可在cowrie查看到记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;nmap&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;# 默认 TCP connect() scan&lt;/span&gt;&lt;br&gt;sudo nmap &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt; -sR &lt;span class=&quot;hljs-comment&quot;&gt;#RPC scan alias for -sV&lt;/span&gt;&lt;br&gt;sudo nmap &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt; -sT &lt;span class=&quot;hljs-comment&quot;&gt;#与上面的(non sudo)nmap一致&lt;/span&gt;&lt;br&gt;sudo nmap &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt; -sV &lt;span class=&quot;hljs-comment&quot;&gt;#version detect&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
-&lt;p&gt;记录如下：&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/nmap.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;记录如下：&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/nmap.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;只有完成三次握手类型得到了记录,与 session 一词隐含的“连接”意义相符。猜想&lt;code&gt;cowrie&lt;/code&gt;使用的库判断一次 session 较为严格:调用了系统调用 &lt;code&gt;connect&lt;/code&gt; 才会被记录(需要操作系统底层的知识还没来得及学)&lt;/p&gt;
 &lt;p&gt;这个追根溯源得&lt;code&gt;twisted.python.syslog&lt;/code&gt;再更底层去,暂停先 &amp;#x2F;&amp;#x2F;todo&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;ssh&lt;/strong&gt;&lt;/p&gt;
 &lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs nginx&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#因为没有配置userdb所以这里输入任何密码都能直接登录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;ssh&lt;/span&gt; root@&lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-variable&quot;&gt;$anything&lt;/span&gt; you like&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
 
 &lt;p&gt;ssh 时测试的记录可在&lt;code&gt;auth&lt;/code&gt;表中查看：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/sshtest.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/sshtest.png&quot;&gt;&lt;/p&gt;
 &lt;p&gt;tty 输入的记录可在&lt;code&gt;input&lt;/code&gt;表查看：&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/input.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/input.png&quot;&gt;&lt;/p&gt;
 &lt;h4 id=&quot;辨别蜜罐&quot;&gt;&lt;a href=&quot;#辨别蜜罐&quot; class=&quot;headerlink&quot; title=&quot;辨别蜜罐&quot;&gt;&lt;/a&gt;辨别蜜罐&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;易突破&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;如上面未配置用户密码的情况下,过于容易就成功ssh,采用一些低安全性密码即可怀疑是否进入了蜜罐&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;信息失真&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;p&gt;ping&lt;/p&gt;
 &lt;p&gt;如图,两次ping的结果时间差一致&lt;/p&gt;
-&lt;p&gt;  &lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/ping.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;/2020/01/10/0x0b-honey-pot/ping.png&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;apt-get&lt;br&gt;一个显然不存在的包成功install&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/aptget.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0b-honey-pot/aptget.png&quot;&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&quot;reference&quot;&gt;&lt;a href=&quot;#reference&quot; class=&quot;headerlink&quot; title=&quot;reference&quot;&gt;&lt;/a&gt;reference&lt;/h3&gt;&lt;ul&gt;
