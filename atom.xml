@@ -1,0 +1,484 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Ac3r</title>
+  <icon>http://r.piggy.lol/icon.png</icon>
+  <subtitle>lol</subtitle>
+  <link href="http://r.piggy.lol/atom.xml" rel="self"/>
+  
+  <link href="http://r.piggy.lol/"/>
+  <updated>2024-01-08T16:11:34.888Z</updated>
+  <id>http://r.piggy.lol/</id>
+  
+  <author>
+    <name>Piggy</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>用 Latex 写一个技术合同模板</title>
+    <link href="http://r.piggy.lol/2022/06/16/technical-contract-latex/"/>
+    <id>http://r.piggy.lol/2022/06/16/technical-contract-latex/</id>
+    <published>2022-06-16T12:19:25.000Z</published>
+    <updated>2024-01-08T16:11:34.888Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h3&gt;&lt;p&gt;最近收到了写技术合同（也叫软著）的任务，据说是可以减税，看了一眼之前的范例，发现这… 基本没有排版可言啊（也可能是我电脑上没有标准的 docx 查看器，用 google doc 打开是乱的），大家都是各写各的，令人惊奇的是这么多公司、学校在写的玩意，官方也并没有发标准的排版格式，和论文比起来美观度差很多。&lt;/p&gt;
+&lt;p&gt;所以就想着.. 嗯！这个合同格式看上去也不是很难，不如写一个 latex 版的玩一玩。上次用 latex 是毕业的时候在 overleaf 套着别人的填填写写，还挺简单的。这次也许涉及到自己创建 cls 等等，我并不希望在这上面花太多时间，所以画图之类我会选择直接从 figma 等之类的软件手动绘图，而不是用 latex 的排版功能。&lt;/p&gt;
+&lt;h2 id=&quot;Let’s-start-it&quot;&gt;&lt;a href=&quot;#Let’s-start-it&quot; class=&quot;headerlink&quot; title=&quot;Let’s start it&quot;&gt;&lt;/a&gt;Let’s start it&lt;/h2&gt;&lt;h3 id=&quot;环境&quot;&gt;&lt;a href=&quot;#环境&quot; class=&quot;headerlink&quot; title=&quot;环境&quot;&gt;&lt;/a&gt;环境&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;XeTeX 3.14159265-2.6-0.999992 (TeX Live 2020&amp;#x2F;Debian)&lt;ul&gt;
+&lt;li&gt;才发现 latex 的版本号是近似 π ，很 nerd 也很浪漫呢！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;VS Code + LaTex Workshop Extension&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;0-字体&quot;&gt;&lt;a href=&quot;#0-字体&quot; class=&quot;headerlink&quot; title=&quot;0. 字体&quot;&gt;&lt;/a&gt;0. 字体&lt;/h3&gt;&lt;p&gt;长期使用 Linux 的话，由于没有什么参照物，有一些问题自己会注意不到。比如字体，感觉我电脑看见的所有 docx 文件因为种种原因都变了形，文件排版质感都很差。（装个 windows 虚拟机可以看到原始的吗？）不过幸好 wps 还保留着字体的名字 simsun，并且我通过多方（飞书在线文档、online docx to pdf）比对后确认是少了这个宋体。&lt;/p&gt;
+&lt;figure class=&quot;highlight sh&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs sh&quot;&gt;wget https://files-cdn.cnblogs.com/files/xiaochina/simsun.zip&lt;br&gt;unar simsun.zip&lt;br&gt;sudo &lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; simsun.ttc /usr/share/fonts/&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; /usr/share/fonts/&lt;br&gt;&lt;br&gt;sudo &lt;span class=&quot;hljs-built_in&quot;&gt;chmod&lt;/span&gt; 644 simsun.ttc&lt;br&gt;sudo mkfontscale&lt;br&gt;sudo mkfontdir&lt;br&gt;sudo fc-cache -fsv&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;安装好以后就可以看到能称之为“正常”的文档啦~&lt;/p&gt;
+&lt;h3 id=&quot;1-封面&quot;&gt;&lt;a href=&quot;#1-封面&quot; class=&quot;headerlink&quot; title=&quot;1. 封面&quot;&gt;&lt;/a&gt;1. 封面&lt;/h3&gt;&lt;p&gt;首先是这个封面，本身长得对排版要求很低…&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2022/06/16/technical-contract-latex/cover.jpg&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-1-合同登记编号&quot;&gt;&lt;a href=&quot;#1-1-合同登记编号&quot; class=&quot;headerlink&quot; title=&quot;1.1 合同登记编号&quot;&gt;&lt;/a&gt;1.1 合同登记编号&lt;/h4&gt;&lt;p&gt;先完成最上角几个框框。对 Latex 一无所知，用 latex rectangle grid 作为关键词搜到了 tikz 这个库，首先是需要在主文件中加上 &lt;code&gt;\usepackage&amp;#123;tikz&amp;#125;&lt;/code&gt;，然后画框框&lt;/p&gt;
+&lt;figure class=&quot;highlight tex&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs tex&quot;&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;% 宽高比都是随手调的，没有硬性限制&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;\begin&lt;/span&gt;&amp;#123;tikzpicture&amp;#125;[xscale=0.8,yscale=1.256]&lt;br&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;% 先画左边四个连续的黑框&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;\draw&lt;/span&gt;[black,very thin] (0,0) grid (4,1);&lt;br&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;% 间隔 1*1 个格子画下个 4*1&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;% 也可以用灰色虚线画一个间隔&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;% \draw[gray,thin,dashed,dash pattern=on 1pt off 2pt] (4,0) grid +(1,1);&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;\draw&lt;/span&gt;[black,thin] (5,0) grid +(4,1);&lt;br&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;% 后续就都是类似的了&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;\draw&lt;/span&gt;[black,thin] (10,0) grid +(2,1);&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;\draw&lt;/span&gt;[black,thin] (13,0) grid +(6,1);&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;\end&lt;/span&gt;&amp;#123;tikzpicture&amp;#125;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;画出来差不多长这样（左上角的字和细节后面再调）：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2022/06/16/technical-contract-latex/grid.jpg&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;1-2-标题与主信息填写&quot;&gt;&lt;a href=&quot;#1-2-标题与主信息填写&quot; class=&quot;headerlink&quot; title=&quot;1.2 标题与主信息填写&quot;&gt;&lt;/a&gt;1.2 标题与主信息填写&lt;/h4&gt;&lt;p&gt;可以看到剩下的分为三部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;code&gt;技术开发合同&lt;/code&gt; 总标题 &lt;/li&gt;
+&lt;li&gt;三个需要在横线上填写的信息</summary>
+        
+      
+    
+    
+    
+    
+    <category term="latex" scheme="http://r.piggy.lol/tags/latex/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>next.js 入个小门</title>
+    <link href="http://r.piggy.lol/2022/06/16/nextjs/"/>
+    <id>http://r.piggy.lol/2022/06/16/nextjs/</id>
+    <published>2022-06-15T19:19:25.000Z</published>
+    <updated>2022-06-16T12:45:59.010Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一&quot;&gt;&lt;a href=&quot;#一&quot; class=&quot;headerlink&quot; title=&quot;一&quot;&gt;&lt;/a&gt;一&lt;/h2&gt;&lt;p&gt;一直都对前端很感兴趣！最近看了 nextjs 的文档更是感觉这个框架好简单，非常方便来弄个小项目。初步打算是弄一个拼贴诗的（之前有一个半废弃没做完的</summary>
+        
+      
+    
+    
+    
+    
+    <category term="前端" scheme="http://r.piggy.lol/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+    <category term="nextjs" scheme="http://r.piggy.lol/tags/nextjs/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>两年跨度间对女权一些问题的思考</title>
+    <link href="http://r.piggy.lol/2022/06/12/feminism-1/"/>
+    <id>http://r.piggy.lol/2022/06/12/feminism-1/</id>
+    <published>2022-06-12T09:55:25.000Z</published>
+    <updated>2024-01-08T16:13:59.108Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天跟高中朋友解释微博为什么被封号了，翻起了之前的内容，发现这篇“迷惑”正好是两年前的今天写的，看了下是很稚嫩，反观这七百多天我本人也并没有什么明显的成长，徒增马齿。但是我不会因此而耻于分享出来，能表达能让他人看见总是好的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2022/06/12/feminism-1/weibo.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;前文如上截图所示。两年了，我还是没有想通，只是现在看起来免觉当时站着说话不腰疼，因为对身边部分女性朋友那种“你们都醉我独醒”的优越感，就轻易去猜测，去下定义做推论。与此同时，我却根本没有资格，首先分不清“装傻示弱”究竟是为人的自由还是男权社会下为女的悲哀，我后来并没有看书去研究。我还是每天花很多时间照镜子，把自己穿得花里胡哨才出门，也想不通那发色究竟是为彰显“看，我多么自由开放”还是为外界的眼光追风而染。我同情那些因社会性不公在日复一日琐事中最终变得mad人们会说她“神经质的”家庭妇女，却难以和自己的妈妈亲近言和。在春节聚会里，成年很久却依旧不敢站出来愤怒地对男人说：你们可不可以去厨房帮点忙！不要老打牌，少喝酒！（meanwhile 我在坐享其成嗷嗷待哺）最痛苦的是，在这样的环境下，我从始至终很难说真正放弃了对“浪漫爱”会降临到自己身上的想象，用那个流行的词——祛魅，沉浸在偶像剧磕 cp 的快乐的那个人是我，放弃幻想接受事实的这个人也是我。&lt;/p&gt;
+&lt;p&gt;一个很可笑的事实是，我几乎从小就表现得像个“女权主义者“，在男同学要帮我搬有一定重量的东西时我拒绝，那是因为&lt;strong&gt;我害怕开始有交集后周遭八卦的小屁孩起哄&lt;/strong&gt;，被大人发现；从来都跟身边的男生界限划清不欠人情，那是因为我觉得这样很有个性，思想品德书上教我不自立的人&lt;strong&gt;不会受到别人的尊重喜欢&lt;/strong&gt;。有一年春晚贾玲和另一位苗条的女演员表演了主题是“女神与女汉子”的小品，那时我根本没接触什么女权思想，但隐隐感到不适（即使这是创作和表演都来自于在喜剧界艰难站稳脚跟的女性作品），那… 也有一定原因是因为&lt;strong&gt;我胖矮，投射在那个小品里，我会是那个女汉子&lt;/strong&gt; 。以上强烈的个人主义，维护得小心翼翼，也就是说，如果我足够幸运有机会，我十分愿意选择当瞩目的被爱的拿尽一切好处的那一个。背负在各种嫉妒中的成长，这其实就是厌女，要承认、修正这一切太难。&lt;br&gt;前几天唐山发生的无差别打人事件，朋友圈以前从不讨论相关问题的女性朋友也开始转发，相当一部分是对这种事件的无助恐惧情绪、对黑社会竟还存在的难以置信；另一部分把视角放在亟待反抗的几千年女性受压迫事实之下的探讨，少了很多。我不会说这些观念在朋友圈的转发不重要，装睡的人叫不醒。这一定是重要的，多一个人看到就多一份凝聚的力量。我有的时候想到种种问题，走在路上都不自觉地捏紧拳头，无数次告诉自己要理性，要像钢铁一般五毒不侵。如果我有一丝丝歇斯底里的情绪暴露，那就满足这个男权社会对女性的规训，正中他们所编造女的“就是情绪不稳定”之下怀了。&lt;/p&gt;
+&lt;p&gt;出于我是个异性恋的事实，也出于我短期离不开这片沼泽地的事实，双重叠加让人生困惑蒙上了一层厚重的窗帘，拍打一下，灰尘簌簌而落，那是对光明渴望无声的呐喊。同样的问题两年前我在反思，今天我依旧在反思，不见明显的成长，一定程度上是工作以后我对自己的要求降低了。如果说今天有什么对自己的期望：别再为自己的人生郁郁悲哀，不要那样了。投入抗争中，为这社会的不公、黑暗———去揭露、改变哪怕一点点。&lt;/p&gt;
+&lt;!-- 我今天把头发染黑了，黑得有些不正常，比原本的发色还要黑。不是想说要剥夺女性拾掇自己头发颜色的自由，我把它染黑正是今天对自己身体选择的自由。但我自身以后很少会再这样去做了，耗费时间、化学物质有害。我要投入那些对生命自由有益的呐喊!</summary>
+        
+      
+    
+    
+    
+    
+    <category term="碎碎念" scheme="http://r.piggy.lol/tags/%E7%A2%8E%E7%A2%8E%E5%BF%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>今天去吃汉堡一路上拍的照片</title>
+    <link href="http://r.piggy.lol/2022/05/30/burger-and-joy/"/>
+    <id>http://r.piggy.lol/2022/05/30/burger-and-joy/</id>
+    <published>2022-05-30T01:46:25.000Z</published>
+    <updated>2022-05-29T16:47:38.803Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;今天总体只有二十多度，接下来几个月可能很难得了，所以我在下午四点多从家出发骑自行车到市中心吃点东西玩一玩，亮马河旁边有外国人聚会唱福音歌曲（应该是吧），闲适宁静，我停在那听了一会儿。&lt;/p&gt;
+&lt;p&gt;大概六点的时候我到达&lt;code&gt;side street&lt;/code&gt;（一家有点贵的汉堡店）了，点了前一天同事告诉我的&lt;code&gt;绝代佳人&lt;/code&gt;，还不错肉食动物大概会很喜欢。这种不热的天气，听张震岳欢快的歌曲，走走停停，拍一些照片，真是很享受的事情！南锣鼓巷周边脏脏的很热闹，但也很无聊，千篇一律的店面。真心觉得我国在建筑与美学这方面有太长的路要走… 不过在满大街贴满社会主义核心价值观的当下，毫无味道的仿古风格的店面，相比要好那么一丢丢。&lt;/p&gt;
+&lt;p&gt;我觉得以后要强迫自己常常出来，保持身心健康。当然，只是这么&lt;code&gt;觉得&lt;/code&gt; … 不想出来的时候怎么都不会出去，在屋里宅到天荒地老。&lt;/p&gt;
+&lt;p&gt;分享下照片，要是在自己的服务器上存的话，我估计保存不了多久。所以放下传到 ins 上的 （画质为何这么差）：&lt;/p&gt;
+&lt;blockquote class=&quot;instagram-media&quot; data-instgrm-permalink=&quot;https://www.instagram.com/p/CeJU0car7EH/?utm_source=ig_embed&amp;amp;utm_campaign=loading&quot; data-instgrm-version=&quot;14&quot; style=&quot; background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);&quot;&gt;&lt;div style=&quot;padding:16px;&quot;&gt; &lt;a href=&quot;https://www.instagram.com/p/CeJU0car7EH/?utm_source=ig_embed&amp;amp;utm_campaign=loading&quot; style=&quot; background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;&quot; target=&quot;_blank&quot;&gt; &lt;div style=&quot; display: flex; flex-direction: row; align-items: center;&quot;&gt; &lt;div style=&quot;background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;display: flex; flex-direction: column; flex-grow: 1; justify-content: center;&quot;&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding: 19% 0;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;display:block; height:50px; margin:0 auto 12px; width:50px;&quot;&gt;&lt;svg width=&quot;50px&quot; height=&quot;50px&quot; viewBox=&quot;0 0 60 60&quot; version=&quot;1.1&quot; xmlns=&quot;https://www.w3.org/2000/svg&quot; xmlns:xlink=&quot;https://www.w3.org/1999/xlink&quot;&gt;&lt;g stroke=&quot;none&quot; stroke-width=&quot;1&quot; fill=&quot;none&quot; fill-rule=&quot;evenodd&quot;&gt;&lt;g transform=&quot;translate(-511.000000, -20.000000)&quot; fill=&quot;#000000&quot;&gt;&lt;g&gt;&lt;path d=&quot;M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631&quot;&gt;&lt;/path&gt;&lt;/g&gt;&lt;/g&gt;&lt;/g&gt;&lt;/svg&gt;&lt;/div&gt;&lt;div style=&quot;padding-top: 8px;&quot;&gt; &lt;div style=&quot; color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;&quot;&gt;View this post on Instagram&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;padding: 12.5% 0;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;&quot;&gt;&lt;div&gt; &lt;div style=&quot;background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);&quot;&gt;&lt;/div&gt; &lt;div style=&quot;background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot;background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;margin-left: 8px;&quot;&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot; width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div style=&quot;margin-left: auto;&quot;&gt; &lt;div style=&quot; width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);&quot;&gt;&lt;/div&gt; &lt;div style=&quot; background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);&quot;&gt;&lt;/div&gt; &lt;div style=&quot; width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt; &lt;div style=&quot;display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;&quot;&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;&quot;&gt;&lt;/div&gt; &lt;div style=&quot; background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/a&gt;&lt;p style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;&quot;&gt;&lt;a href=&quot;https://www.instagram.com/p/CeJU0car7EH/?utm_source=ig_embed&amp;amp;utm_campaign=loading&quot; style=&quot; color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;&quot; target=&quot;_blank&quot;&gt;A post shared by zGina (@zgina80)&lt;/a&gt;&lt;/p&gt;&lt;/div&gt;&lt;/blockquote&gt; &lt;script async</summary>
+        
+      
+    
+    
+    
+    
+    <category term="北京" scheme="http://r.piggy.lol/tags/%E5%8C%97%E4%BA%AC/"/>
+    
+    <category term="小学生日记" scheme="http://r.piggy.lol/tags/%E5%B0%8F%E5%AD%A6%E7%94%9F%E6%97%A5%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>对 hexo 主题的改造</title>
+    <link href="http://r.piggy.lol/2022/05/29/polish-hexo-theme/"/>
+    <id>http://r.piggy.lol/2022/05/29/polish-hexo-theme/</id>
+    <published>2022-05-28T17:46:25.000Z</published>
+    <updated>2022-06-12T09:50:36.717Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h3&gt;&lt;p&gt;我很喜欢博客使用着的这个主题：&lt;a href=&quot;https://github.com/random-yang/paper&quot;&gt;paper&lt;/a&gt;，现在很多流行的主题太“动态”了，这个简约又不会太简单。但是也有几个想加以改造的地方，比如：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首页右边快速导航栏并没有 sticky&lt;/li&gt;
+&lt;li&gt;黑暗模式的处理过于粗暴，夜间模式下的主题色太扎眼。其余区域对比度又很单一，没有层次感。有点伤眼睛&lt;ul&gt;
+&lt;li&gt;改进更人性化的夜间模式&lt;/li&gt;
+&lt;li&gt;自设定主题色&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;总体比较适合文字的书写，对技术型博客相对不太适合&lt;ul&gt;
+&lt;li&gt;优化一下 code bolck 的样式&lt;/li&gt;
+&lt;li&gt;使代码块支持一键复制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;最上方的导航只有&lt;code&gt;首页&lt;/code&gt;，也许我要放个 About Me&lt;/li&gt;
+&lt;li&gt;全局搜索&lt;ul&gt;
+&lt;li&gt;文章多了以后这个还挺重要&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id=&quot;改造&quot;&gt;&lt;a href=&quot;#改造&quot; class=&quot;headerlink&quot; title=&quot;改造&quot;&gt;&lt;/a&gt;改造&lt;/h3&gt;&lt;h4 id=&quot;1-sticky-首页导航栏&quot;&gt;&lt;a href=&quot;#1-sticky-首页导航栏&quot; class=&quot;headerlink&quot; title=&quot;1. sticky 首页导航栏&quot;&gt;&lt;/a&gt;1. &lt;code&gt;sticky&lt;/code&gt; 首页导航栏&lt;/h4&gt;&lt;p&gt;position:sticky 这好像是 CSS 里一个比较新的特性，以前做吸顶都是用的 position:fixed。我照着 &lt;a href=&quot;https://www.digitalocean.com/community/tutorials/css-position-sticky&quot;&gt;css-position-sticky&lt;/a&gt; 这个教程把几个属性放到 sidebar 和 main 上面去就可以了。原理并没有特意去弄明白它….&lt;/p&gt;
+&lt;h4 id=&quot;2-优化黑暗模式的处理方式&quot;&gt;&lt;a href=&quot;#2-优化黑暗模式的处理方式&quot; class=&quot;headerlink&quot; title=&quot;2. 优化黑暗模式的处理方式&quot;&gt;&lt;/a&gt;2. 优化黑暗模式的处理方式&lt;/h4&gt;&lt;p&gt;搜了一些黑暗模式的&lt;a href=&quot;https://css-tricks.com/a-complete-guide-to-dark-mode-on-the-web/&quot;&gt;处理&lt;/a&gt;，挺有趣的。还发现了一个网站 &lt;a href=&quot;https://refactoringui.com/&quot;&gt;https://refactoringui.com&lt;/a&gt; 好像很不错… 有空要系统性地学习一下 UI&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2022/05/28/polish-hexo-theme/20220531-140815.jpg&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;3-优化代码块的样式&quot;&gt;&lt;a href=&quot;#3-优化代码块的样式&quot; class=&quot;headerlink&quot; title=&quot;3. 优化代码块的样式&quot;&gt;&lt;/a&gt;3. 优化代码块的样式&lt;/h4&gt;&lt;h4 id=&quot;4-About-Me&quot;&gt;&lt;a href=&quot;#4-About-Me&quot; class=&quot;headerlink&quot; title=&quot;4. About Me&quot;&gt;&lt;/a&gt;4. About Me&lt;/h4&gt;&lt;h4 id=&quot;5-全局搜索&quot;&gt;&lt;a href=&quot;#5-全局搜索&quot; class=&quot;headerlink&quot; title=&quot;5. 全局搜索&quot;&gt;&lt;/a&gt;5.</summary>
+        
+      
+    
+    
+    
+    
+    <category term="设计" scheme="http://r.piggy.lol/tags/%E8%AE%BE%E8%AE%A1/"/>
+    
+    <category term="前端" scheme="http://r.piggy.lol/tags/%E5%89%8D%E7%AB%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://r.piggy.lol/2022/05/28/hello-world/"/>
+    <id>http://r.piggy.lol/2022/05/28/hello-world/</id>
+    <published>2022-05-28T05:25:10.370Z</published>
+    <updated>2022-05-28T05:25:10.370Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;$ hexo new &lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;My New Post&amp;quot;&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;$ hexo server&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;$ hexo generate&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/generating.html&quot;&gt;Generating&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Deploy-to-remote-sites&quot;&gt;&lt;a href=&quot;#Deploy-to-remote-sites&quot; class=&quot;headerlink&quot; title=&quot;Deploy to remote sites&quot;&gt;&lt;/a&gt;Deploy to remote sites&lt;/h3&gt;&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;$ hexo deploy&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;More info: &lt;a</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>常见蜜罐体验和探索</title>
+    <link href="http://r.piggy.lol/2020/01/11/0x0B%20HoneyPot/"/>
+    <id>http://r.piggy.lol/2020/01/11/0x0B%20HoneyPot/</id>
+    <published>2020-01-10T18:46:25.000Z</published>
+    <updated>2022-05-29T05:01:15.107Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;实验目的&quot;&gt;&lt;a href=&quot;#实验目的&quot; class=&quot;headerlink&quot; title=&quot;实验目的&quot;&gt;&lt;/a&gt;实验目的&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;了解蜜罐的分类和基本原理&lt;/li&gt;
+&lt;li&gt;了解不同类型蜜罐的适用场合&lt;/li&gt;
+&lt;li&gt;掌握常见蜜罐的搭建和使用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;实验环境&quot;&gt;&lt;a href=&quot;#实验环境&quot; class=&quot;headerlink&quot; title=&quot;实验环境&quot;&gt;&lt;/a&gt;实验环境&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;中等交互蜜罐 &lt;code&gt;Cowrie&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;实验要求&quot;&gt;&lt;a href=&quot;#实验要求&quot; class=&quot;headerlink&quot; title=&quot;实验要求&quot;&gt;&lt;/a&gt;实验要求&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;记录蜜罐的详细搭建过程；&lt;/li&gt;
+&lt;li&gt;使用 &lt;code&gt;nmap&lt;/code&gt; 扫描搭建好的蜜罐并分析扫描结果，同时分析「 &lt;code&gt;nmap&lt;/code&gt; 扫描期间」蜜罐上记录得到的信息；&lt;/li&gt;
+&lt;li&gt;如何辨别当前目标是一个「蜜罐」？以自己搭建的蜜罐为例进行说明；&lt;/li&gt;
+&lt;li&gt;（可选）总结常见的蜜罐识别和检测方法；&lt;/li&gt;
+&lt;li&gt;（可选）基于 &lt;a href=&quot;https://github.com/thinkst/canarytokens&quot;&gt;canarytokens&lt;/a&gt; 搭建蜜信实验环境进行自由探索型实验；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&quot;实验过程&quot;&gt;&lt;a href=&quot;#实验过程&quot; class=&quot;headerlink&quot; title=&quot;实验过程&quot;&gt;&lt;/a&gt;实验过程&lt;/h2&gt;&lt;h3 id=&quot;中等交互蜜罐-Cowrie&quot;&gt;&lt;a href=&quot;#中等交互蜜罐-Cowrie&quot; class=&quot;headerlink&quot; title=&quot;中等交互蜜罐 Cowrie&quot;&gt;&lt;/a&gt;中等交互蜜罐 &lt;code&gt;Cowrie&lt;/code&gt;&lt;/h3&gt;&lt;p&gt;虚拟机信息&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/kali_v.png&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;环境搭建-虚拟机网络为-bridge&quot;&gt;&lt;a href=&quot;#环境搭建-虚拟机网络为-bridge&quot; class=&quot;headerlink&quot; title=&quot;环境搭建 (虚拟机网络为 bridge)&quot;&gt;&lt;/a&gt;环境搭建 (虚拟机网络为 bridge)&lt;/h4&gt;&lt;p&gt;照&lt;a href=&quot;https://cowrie.readthedocs.io/en/latest/INSTALL.html&quot;&gt;官方步骤&lt;/a&gt;搭建&lt;/p&gt;
+&lt;figure class=&quot;highlight bash&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs bash&quot;&gt;step 1: On debian based systems,For a Python3 based environment:&lt;br&gt;&lt;br&gt;sudo apt-get install git python-virtualenv libssl-dev libffi-dev build-essential libpython3-dev python3-minimal authbind virtualenv&lt;br&gt;&lt;br&gt;Step 2: Create a user account&lt;br&gt;&lt;br&gt;sudo adduser --disabled-password cowrie&lt;br&gt;sudo su - cowrie&lt;br&gt;&lt;br&gt;Step 3: Clone cowrie&lt;br&gt;&lt;br&gt;git &lt;span class=&quot;hljs-built_in&quot;&gt;clone&lt;/span&gt; http://github.com/cowrie/cowrie&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; cowrie&lt;br&gt;&lt;br&gt;Step 4: Setup Virtual Environment and active it&lt;br&gt;&lt;br&gt;virtualenv --python=python3 cowrie-env&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;source&lt;/span&gt; cowrie-env/bin/activate&lt;br&gt;pip install --upgrade pip&lt;br&gt;pip install --upgrade -r requirements.txt&lt;br&gt;&lt;br&gt;Step 5: Configure cowrie.cfg&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; etc/&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cp&lt;/span&gt; cowrie.cfg.dist cowrie.cfg&lt;br&gt;vim ./cowrie.cfg &lt;span class=&quot;hljs-comment&quot;&gt;#配置蜜罐主机信息&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# (default: svr04)&lt;/span&gt;&lt;br&gt;hostname = anig04&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#　方便观察log 这里配置下sql&lt;/span&gt;&lt;br&gt;[output_mysql] &lt;span class=&quot;hljs-comment&quot;&gt;#前面默认的注释符要去掉不然 twisted 不会parse了&lt;/span&gt;&lt;br&gt;enabled = &lt;span class=&quot;hljs-literal&quot;&gt;true&lt;/span&gt;&lt;br&gt;host = localhost&lt;br&gt;database = cowrie&lt;br&gt;username = cowrie&lt;br&gt;password = aniglalala&lt;br&gt;port = 3306&lt;br&gt;debug = &lt;span class=&quot;hljs-literal&quot;&gt;false&lt;/span&gt;&lt;br&gt;&lt;br&gt;Step 6: Starting Cowrie&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;cd&lt;/span&gt; ..&lt;br&gt;bin/cowrie start&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/cowrie_start.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;端口重定向&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Make Cowrie accessible on the default SSH port (22)&lt;/p&gt;
+&lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;.iptables&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#iptables端口转发属于系统范围，需要作为root身份执行&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;exit&lt;/span&gt;&lt;br&gt;sudo iptables -t nat -A PREROUTING -p tcp --dport &lt;span class=&quot;hljs-number&quot;&gt;22&lt;/span&gt; -j REDIRECT --to-port &lt;span class=&quot;hljs-number&quot;&gt;2222&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/iptables.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安装 第三方可视化 mysql&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;＃root 用户下&lt;br&gt;＃官方建议的 mysql-server 被遗弃了这里改成mariadb&lt;br&gt;&lt;br&gt;sudo apt-get install libmariadb-dev&lt;br&gt;su - cowrie&lt;br&gt;source cowrie&lt;span class=&quot;hljs-regexp&quot;&gt;/cowrie-env/&lt;/span&gt;bin/activate&lt;br&gt;pip install mysqlclient&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#开启服务，会被要求输入root用户的密码&lt;/span&gt;&lt;br&gt;systemctl start mariadb&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 默认无密码 直接回车&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 创建用户 cowrie&lt;/span&gt;&lt;br&gt;mysql -u root -p&lt;br&gt;GRANT ALL ON cowrie.* TO cowrie@localhost IDENTIFIED BY &lt;span class=&quot;hljs-string&quot;&gt;&amp;#x27;aniglalala&amp;#x27;&lt;/span&gt;;&lt;br&gt;flush privileges;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;exit&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 进入存放sql文件的目录下&lt;/span&gt;&lt;br&gt;cd docs&lt;span class=&quot;hljs-regexp&quot;&gt;/sql/&lt;/span&gt;&lt;br&gt;mysql -u cowrie -p&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 输入自己的密码`aniglalala`&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 建表&lt;/span&gt;&lt;br&gt;use cowrie;&lt;br&gt;source ./mysql.sql;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;exit&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;结果如下,它们初始均为空&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/mysql.png&quot;&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# 重启服务&lt;/span&gt;&lt;br&gt;cd&lt;br&gt;.&lt;span class=&quot;hljs-regexp&quot;&gt;/cowrie/&lt;/span&gt;bin/cowrie restart&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;这里出了点小插曲就是 &lt;code&gt;#[output_mysql]&lt;/code&gt; 前面的&lt;code&gt;#&lt;/code&gt;没有去掉，发现重启失败&lt;/p&gt;
+&lt;p&gt;报错信息为&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/already.png&quot;&gt;&lt;br&gt;也就是 &lt;code&gt;[output_jsonlog]&lt;/code&gt; 字段&lt;code&gt;enabled&lt;/code&gt;重复&lt;/p&gt;
+&lt;figure class=&quot;highlight awk&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs awk&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#验证mysql服务开启&lt;/span&gt;&lt;br&gt;cat .&lt;span class=&quot;hljs-regexp&quot;&gt;/cowrie/&lt;/span&gt;var&lt;span class=&quot;hljs-regexp&quot;&gt;/log/&lt;/span&gt;cowrie/cowrie.log&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;可以看到 cowrie 加载到 mysql 服务已经启动&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/sql.png&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;模拟攻击-amp-观察&quot;&gt;&lt;a href=&quot;#模拟攻击-amp-观察&quot; class=&quot;headerlink&quot; title=&quot;模拟攻击&amp;amp;观察&quot;&gt;&lt;/a&gt;模拟攻击&amp;amp;观察&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;网络拓扑 host only(1.测试安全 2.减少包流量方便观察)&lt;ul&gt;
+&lt;li&gt;Attacker &lt;code&gt;192.168.56.1&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;HoneyPot &lt;code&gt;192.168.56.109&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;nmap&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;攻击者方结果&lt;/em&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;-sN; -sF; -sX&lt;/code&gt;结果一致&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/fxn.png&quot;&gt;&lt;br&gt;分析：根据 nmap 判定端口状态的规则:根据 RFC 中对端口判定的漏洞，当发送不含 SYN, RST, or ACK 标志的包时，如果目标端口关闭，将返回 RST，如果端口打开则无响应。若目标系统存在该漏洞则会暴露端口状态。iptables 设置端口 22 重定向至 2222 之后,由于&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;The key advantage to these scan types is that they can sneak through certain non-stateful firewalls and packet filtering routers. Such firewalls try to prevent incoming TCP connections (while allowing outbound ones) by blocking any TCP packets with the SYN bit set and ACK cleared.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;sN,sF,sX&lt;/code&gt;扫描类型的包穿透了防火墙的过滤,因此关闭的 22 端口会直接返回 RST 包,而正常开放的 2222 端口不会有任何响应,与nmap判定结果相符&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/nmap_sN.png&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;-sS&lt;/code&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2222&lt;/code&gt; 结果如下:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/2222-filtered.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;分析：该类型包到达端口 22 被防火墙转发至 2222 后有相应返回的 ACK 包,会被 nmap 确认为端口开放,由于&lt;code&gt;--max-retries 0&lt;/code&gt;如果则在端口上只发送一次数据包，不会进行重试。可以看到 22 端口在返回一个正确 ACK 包之后又返回了一个被 wireshark 认为是&lt;code&gt;Out-Of-Order&lt;/code&gt;(经多次测试均是此结果),&lt;strong&gt;本来应该是 2222 返回的包为什么会被 22 端口来返回呢？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/nmap_sS_max0.png&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2222 -T2&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;当修改&lt;code&gt;timing mode&lt;/code&gt;为 T2 以较为轻柔的方式来扫描时,可以得到两端口均开放的结果如下:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/T2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;一个猜测是在 port A 被&lt;code&gt;redirect&lt;/code&gt;至 port B 设置下,&lt;em&gt;一定时间&lt;/em&gt;内&lt;code&gt;iptables&lt;/code&gt;会无脑将 port B 返回的包转发至 port A 作为出口,待查证&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/T2_Sneaky.png&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;sudo nmap 192.168.56.109 -sS --max-retries 0 -p 22,2221&lt;/code&gt;结果如下:&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/2221.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;分析:当然,正常开放另一个端口可以得到相同结果,&lt;code&gt;nc -tlp 2221&lt;/code&gt;开启一个端口&lt;code&gt;2221&lt;/code&gt;,可以在下图看到 22 和 2221 端口均正常返回 ACK&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/22_2221.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;将&lt;code&gt;--max-retries&lt;/code&gt;改为大于 0 的数值或者去掉该参数(默认&amp;gt;0)之后与&lt;code&gt;-sT&lt;/code&gt;扫描结果一致&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;code&gt;-sT&lt;/code&gt;&lt;br&gt;当采用此种扫描方式时,不管是设置 max-retry 为 0,还是修改 timing mode 使更粗暴,得到的结果均一致:22 和 2222 端口开放&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/sT_max0.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;此结果让上面的推测不太站得住脚,因为两端口均正常建立了连接:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/tcp_connect.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;它和上面 -sS –max-retries 0 扫描产生差异结果原因？&lt;/strong&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;蜜罐方结果&lt;/em&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs nginx&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# (不完全测试)&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;# nmap只有以下类型可在cowrie查看到记录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;nmap&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;# 默认 TCP connect() scan&lt;/span&gt;&lt;br&gt;sudo nmap &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt; -sR &lt;span class=&quot;hljs-comment&quot;&gt;#RPC scan alias for -sV&lt;/span&gt;&lt;br&gt;sudo nmap &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt; -sT &lt;span class=&quot;hljs-comment&quot;&gt;#与上面的(non sudo)nmap一致&lt;/span&gt;&lt;br&gt;sudo nmap &lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt; -sV &lt;span class=&quot;hljs-comment&quot;&gt;#version detect&lt;/span&gt;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;记录如下：&lt;br&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/nmap.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;只有完成三次握手类型得到了记录,与 session 一词隐含的“连接”意义相符。猜想&lt;code&gt;cowrie&lt;/code&gt;使用的库判断一次 session 较为严格:调用了系统调用 &lt;code&gt;connect&lt;/code&gt; 才会被记录(需要操作系统底层的知识还没来得及学)&lt;/p&gt;
+&lt;p&gt;这个追根溯源得&lt;code&gt;twisted.python.syslog&lt;/code&gt;再更底层去,暂停先 &amp;#x2F;&amp;#x2F;todo&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ssh&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight nginx&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs nginx&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;#因为没有配置userdb所以这里输入任何密码都能直接登录&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-attribute&quot;&gt;ssh&lt;/span&gt; root@&lt;span class=&quot;hljs-number&quot;&gt;192.168.56.109&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-variable&quot;&gt;$anything&lt;/span&gt; you like&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;ssh 时测试的记录可在&lt;code&gt;auth&lt;/code&gt;表中查看：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/sshtest.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;tty 输入的记录可在&lt;code&gt;input&lt;/code&gt;表查看：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/input.png&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;辨别蜜罐&quot;&gt;&lt;a href=&quot;#辨别蜜罐&quot; class=&quot;headerlink&quot; title=&quot;辨别蜜罐&quot;&gt;&lt;/a&gt;辨别蜜罐&lt;/h4&gt;&lt;p&gt;&lt;strong&gt;易突破&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;如上面未配置用户密码的情况下,过于容易就成功ssh,采用一些低安全性密码即可怀疑是否进入了蜜罐&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;信息失真&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;ping&lt;/p&gt;
+&lt;p&gt;如图,两次ping的结果时间差一致&lt;/p&gt;
+&lt;p&gt;  &lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/ping.png&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;apt-get&lt;br&gt;一个显然不存在的包成功install&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2020/01/10/0x0B%20HoneyPot/aptget.png&quot;&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;reference&quot;&gt;&lt;a href=&quot;#reference&quot; class=&quot;headerlink&quot; title=&quot;reference&quot;&gt;&lt;/a&gt;reference&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="蜜罐" scheme="http://r.piggy.lol/tags/%E8%9C%9C%E7%BD%90/"/>
+    
+    <category term="信息安全" scheme="http://r.piggy.lol/tags/%E4%BF%A1%E6%81%AF%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux 系统进程与线程生命周期</title>
+    <link href="http://r.piggy.lol/2019/11/13/ThreadAndProcess-2019-11-13/"/>
+    <id>http://r.piggy.lol/2019/11/13/ThreadAndProcess-2019-11-13/</id>
+    <published>2019-11-13T05:00:00.000Z</published>
+    <updated>2022-05-28T05:38:08.013Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h3 id=&quot;Basic&quot;&gt;&lt;a href=&quot;#Basic&quot; class=&quot;headerlink&quot; title=&quot;Basic&quot;&gt;&lt;/a&gt;Basic&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;进程是系统分配资源的最小单位&lt;/li&gt;
+&lt;li&gt;线程是处理机调度的最小单位&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Linux 系统中，&lt;code&gt;进程&lt;/code&gt;与&lt;code&gt;线程&lt;/code&gt;的不像在 Windows 中特别区分，线程仅仅被视为一个与其他线程共享某些资源的进程，它们都被称之为&lt;code&gt;Task&lt;/code&gt;（kernel data structure: task_struct）。下面从 Linux 系统中基本函数 &lt;code&gt;exec()&lt;/code&gt;,&lt;code&gt;fork()&lt;/code&gt;,&lt;code&gt;wait()&lt;/code&gt;来分析 Linux 系统的进程管理，从 POSIX 标准分析线程管理。&lt;/p&gt;
+&lt;h3 id=&quot;Process&quot;&gt;&lt;a href=&quot;#Process&quot; class=&quot;headerlink&quot; title=&quot;Process&quot;&gt;&lt;/a&gt;Process&lt;/h3&gt;&lt;p&gt;进程创建：类 Unix 系统把进程创建分解到两个单独的函数执行：fork()和 exec()&lt;/p&gt;
+&lt;h4 id=&quot;exec&quot;&gt;&lt;a href=&quot;#exec&quot; class=&quot;headerlink&quot; title=&quot;exec()&quot;&gt;&lt;/a&gt;&lt;code&gt;exec()&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;读取可执行文件并将其载入地址空间运行&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;man 3 exec&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;fork&quot;&gt;&lt;a href=&quot;#fork&quot; class=&quot;headerlink&quot; title=&quot;fork()&quot;&gt;&lt;/a&gt;&lt;code&gt;fork()&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;在类 Unix 系统中，除内核进程(?)、init 进程(PID&amp;#x3D;1)以外，新进程都衍自系统调用&lt;code&gt;fork()&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;fork 函数很特别，返回两次，分别给父子进程返回 子进程的 PID 和 0， 若出现以下情况：① 系统限制&lt;code&gt;/proc/sys/kernel/pid_max&lt;/code&gt; ② 内存&amp;#x2F;资源不足，则会 fork 失败返回-1。一旦父进程退出，子进程就被挂到 PID 1 下，所以可以看到很多父进程 PID 为 1 的进程。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;COW(写时拷贝)&lt;ul&gt;
+&lt;li&gt;资源的复制只有在需要写入的时候才允许，在此之前以只读方式共享&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以下是偷来的一个很助于理解该函数的&lt;a href=&quot;https://stackoverflow.com/questions/26793402/visually-what-happens-to-fork-in-a-for-loop&quot;&gt;例子&lt;/a&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs C&quot;&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-type&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;()&lt;/span&gt;&lt;br&gt;&amp;#123;&lt;br&gt;   &lt;span class=&quot;hljs-type&quot;&gt;int&lt;/span&gt; i;&lt;br&gt;   &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt; (i=&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;;i&amp;lt;&lt;span class=&quot;hljs-number&quot;&gt;3&lt;/span&gt;;i++)&lt;br&gt;   &amp;#123;&lt;br&gt;      fork();&lt;br&gt;      &lt;span class=&quot;hljs-comment&quot;&gt;// getppid(): gets the parent process-id&lt;/span&gt;&lt;br&gt;      &lt;span class=&quot;hljs-comment&quot;&gt;// getpid(): get child process-id&lt;/span&gt;&lt;br&gt;      &lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;[%d] [%d] i=%d\n&amp;quot;&lt;/span&gt;, getppid(), getpid(), i);&lt;br&gt;   &amp;#125;&lt;br&gt;   &lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;[%d] [%d] hi\n&amp;quot;&lt;/span&gt;, getppid(), getpid());&lt;br&gt;&amp;#125;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;附图理解：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/fork.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;在&lt;code&gt;htop&lt;/code&gt;中可以看到它漂亮的树型结构，父子进程关系是这样的&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/tree.png&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;wait&quot;&gt;&lt;a href=&quot;#wait&quot; class=&quot;headerlink&quot; title=&quot;wait()&quot;&gt;&lt;/a&gt;&lt;code&gt;wait()&lt;/code&gt;&lt;/h4&gt;&lt;p&gt;&lt;code&gt;man 3 wait&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&quot;Task-amp-Example&quot;&gt;&lt;a href=&quot;#Task-amp-Example&quot; class=&quot;headerlink&quot; title=&quot;Task&amp;amp;Example&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.usna.edu/Users/cs/aviv/classes/ic221/s17/lab/07/lab.html&quot;&gt;Task&amp;amp;Example&lt;/a&gt;&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/time.c&quot;&gt;&lt;code&gt;timer&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;要求是&lt;code&gt;接收命令及其参数在 shell 中执行，并输出 start、end 时间之差&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;在此例中，先&lt;code&gt;fork&lt;/code&gt;生成一个子进程，在子进程中使用&lt;code&gt;execvp(argv[1], argv);&lt;/code&gt;执行命令，父进程&lt;code&gt;wait&lt;/code&gt;等待子进程的结束并计算时间。注意：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;exec 从内存中加载程序并执行，从而&lt;strong&gt;替换&lt;/strong&gt;了子进程&lt;/li&gt;
+&lt;li&gt;所以选择在父进程中计时 end ，并 print 时间之差 diff (若在主程序会计时两次(fork~)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/ping.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;只要是按正常方式退出程序，即可以正确计时&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/mini-sh.c&quot;&gt;&lt;code&gt;mini-sh&lt;/code&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;拥有了&lt;a href=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/exec_fork_wait.c&quot;&gt;&lt;code&gt;exec-fork-wait&lt;/code&gt;&lt;/a&gt;循环我们就拥有了一个 shell 所具有的最基本的功能！所以可以来制造一个 mini-shell 了&lt;/p&gt;
+&lt;p&gt;step 1：&lt;code&gt;token-sh&lt;/code&gt; 对输入的字符串流处理&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;判断 &lt;code&gt;空行&lt;/code&gt;，&lt;code&gt;EOF&lt;/code&gt;等&lt;/li&gt;
+&lt;li&gt;以空格分割，*cmd_argv[ ] 接收参数&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;step 2: &lt;code&gt;while&lt;/code&gt;不断接受新输入，再加入上述的 &lt;code&gt;exec-fork-wait&lt;/code&gt;循环和 timer.c 功能&lt;/p&gt;
+&lt;p&gt;这样得到一个可以计时的 shell 　如下&lt;br&gt;&lt;img src=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/shell.gif&quot;&gt;&lt;/p&gt;
+&lt;p&gt;但是如果 ctrl+c 或 ctrl+z 会结束 mini-shell 。回到系统自己的 shell。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Thread&quot;&gt;&lt;a href=&quot;#Thread&quot; class=&quot;headerlink&quot; title=&quot;Thread&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://www.usna.edu/Users/cs/aviv/classes/ic221/s16/lec/28/lec.html&quot;&gt;Thread&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;类似进程，线程的生命周期始于创建，但不是 &lt;code&gt;fork()&lt;/code&gt;而来，而是由一个起始函数作为入口点创建。（TODO：感觉这话说着很矛盾，&lt;code&gt;fork&lt;/code&gt; 不也可以看做一个起始函数创建了子进程吗，应该是函数内部所做的操作有不同。后续有待了解吧）&lt;/p&gt;
+&lt;h4 id=&quot;thread-creation&quot;&gt;&lt;a href=&quot;#thread-creation&quot; class=&quot;headerlink&quot; title=&quot;thread creation&quot;&gt;&lt;/a&gt;thread creation&lt;/h4&gt;&lt;h4 id=&quot;thread-termination&quot;&gt;&lt;a href=&quot;#thread-termination&quot; class=&quot;headerlink&quot; title=&quot;thread termination&quot;&gt;&lt;/a&gt;thread termination&lt;/h4&gt;&lt;p&gt;终止有以下情况：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;线程完成任务&lt;/li&gt;
+&lt;li&gt;父线程终止，所有子线程均终止&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;thread-join&quot;&gt;&lt;a href=&quot;#thread-join&quot; class=&quot;headerlink&quot; title=&quot;thread join&quot;&gt;&lt;/a&gt;&lt;a href=&quot;https://pages.mtu.edu/~shene/NSF-3/e-Book/FUNDAMENTALS/thread-management.html&quot;&gt;thread join&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;本人之前一直按照意译将其理解为&lt;code&gt;线程加入&lt;/code&gt;，像进程一样到就绪队列中等待执行，完全错误，实际上&lt;code&gt;加入&lt;/code&gt;这个概念在&lt;code&gt;thread creation&lt;/code&gt;时做到了&lt;/p&gt;
+&lt;p&gt;它类似于进程中使用的&lt;code&gt;wait()&lt;/code&gt;，调用线程被阻塞，等待被调用的线程修改状态&amp;#x2F;返回结果。是用于应对以下情况：&lt;/p&gt;
+&lt;p&gt;主线程派发给子线程一个复杂任务，若主线程先于子线程结束，但是又需要在主线程中获得子线程的结果。&lt;br&gt;它不能悄悄地自己就终结了，所以有了该函数：&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;int pthread_join(pthread_t thread, void **retval);&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;举以下例子观察：&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs C&quot;&gt;&lt;span class=&quot;hljs-type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(&lt;span class=&quot;hljs-type&quot;&gt;int&lt;/span&gt; argc, &lt;span class=&quot;hljs-type&quot;&gt;char&lt;/span&gt; * argv[])&lt;/span&gt;&amp;#123;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-type&quot;&gt;pthread_t&lt;/span&gt; thread;&lt;br&gt;&lt;br&gt;pthread_create(&amp;amp;thread, &lt;span class=&quot;hljs-literal&quot;&gt;NULL&lt;/span&gt;, hello_fun, &lt;span class=&quot;hljs-literal&quot;&gt;NULL&lt;/span&gt;);&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;random&amp;quot;&lt;/span&gt;);&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;random&amp;quot;&lt;/span&gt;);&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;random&amp;quot;&lt;/span&gt;);&lt;br&gt;&lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;random&amp;quot;&lt;/span&gt;);&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;//sleep(1);&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;//hello_fun只是简单的print&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-comment&quot;&gt;//pthread_join(thread,NULL);&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;;&lt;br&gt;&amp;#125;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;当注释掉 &lt;code&gt;pthread_join()&lt;/code&gt; 得到多种结果如下：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/res2.png&quot;&gt;&lt;/p&gt;
+&lt;p&gt;也就是说，如果把主进程视为 A，创建的子进程视为 B，随机出现了以下情况：&lt;code&gt;ABAB AABAAB BA A&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;令我比较困惑的是为什么主函数有可能执行两次（也就是 print 了 8 个 random），&lt;br&gt;创建线程后，两线程对等，互相抢占 CPU，抢到了即执行，并在主函数尾结束。&lt;/p&gt;
+&lt;p&gt;但是当使用 &lt;code&gt;pthread_join()&lt;/code&gt; 时就只会出现一种结果，因为主线程已经堵塞（block）了。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;读写者&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;基于读写者互斥问题更好理解&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这里给出的是一个写者优先的例子&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/ReadWriter.c&quot;&gt;ReadWriter.c&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;thread-yield&quot;&gt;&lt;a href=&quot;#thread-yield&quot; class=&quot;headerlink&quot; title=&quot;thread yield&quot;&gt;&lt;/a&gt;thread yield&lt;/h4&gt;&lt;h4 id=&quot;Threads-Running-Like-Processes&quot;&gt;&lt;a href=&quot;#Threads-Running-Like-Processes&quot; class=&quot;headerlink&quot; title=&quot;Threads Running Like Processes&quot;&gt;&lt;/a&gt;Threads Running Like Processes&lt;/h4&gt;&lt;p&gt;参考资料举了一个丧心病狂的例子让我四核的电脑 CPU 占用率瞬间飚至 400%&lt;/p&gt;
+&lt;figure class=&quot;highlight c&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;code class=&quot;hljs C&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;/* busy_thread.c*/&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;stdio.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;string.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;pthread.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;unistd.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;hljs-string&quot;&gt;&amp;lt;sys/syscall.h&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;define&lt;/span&gt; gettidv1() syscall(__NR_gettid) &lt;span class=&quot;hljs-comment&quot;&gt;// new form&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;hljs-meta&quot;&gt;#&lt;span class=&quot;hljs-keyword&quot;&gt;define&lt;/span&gt; gettidv2() syscall(SYS_gettid)  &lt;span class=&quot;hljs-comment&quot;&gt;// traditional form&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-type&quot;&gt;void&lt;/span&gt; *&lt;span class=&quot;hljs-title function_&quot;&gt;hello_fun&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(&lt;span class=&quot;hljs-type&quot;&gt;void&lt;/span&gt; *args)&lt;/span&gt; &amp;#123;&lt;br&gt;    &lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;the pthread_1 id is %ld\n&amp;quot;&lt;/span&gt;, pthread_self());&lt;br&gt;    &lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;the thread_1&amp;#x27;s Pid is %d\n&amp;quot;&lt;/span&gt;, getpid());&lt;br&gt;    &lt;span class=&quot;hljs-built_in&quot;&gt;printf&lt;/span&gt;(&lt;span class=&quot;hljs-string&quot;&gt;&amp;quot;The LWPID/tid of thread_1 is: %ld\n&amp;quot;&lt;/span&gt;, (&lt;span class=&quot;hljs-type&quot;&gt;long&lt;/span&gt; &lt;span class=&quot;hljs-type&quot;&gt;int&lt;/span&gt;)gettidv1());&lt;br&gt;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;while&lt;/span&gt;(&lt;span class=&quot;hljs-number&quot;&gt;1&lt;/span&gt;)&amp;#123;&lt;br&gt;    &lt;span class=&quot;hljs-comment&quot;&gt;//busy wait&lt;/span&gt;&lt;br&gt;  &amp;#125;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-literal&quot;&gt;NULL&lt;/span&gt;;&lt;br&gt;&amp;#125;&lt;br&gt;&lt;br&gt;&lt;span class=&quot;hljs-type&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;hljs-title function_&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;hljs-params&quot;&gt;(&lt;span class=&quot;hljs-type&quot;&gt;int&lt;/span&gt; argc, &lt;span class=&quot;hljs-type&quot;&gt;char&lt;/span&gt; * argv[])&lt;/span&gt;&amp;#123;&lt;br&gt;  &lt;span class=&quot;hljs-type&quot;&gt;pthread_t&lt;/span&gt; thread[&lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;];  &lt;span class=&quot;hljs-comment&quot;&gt;//thread identifier&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-type&quot;&gt;int&lt;/span&gt; i;&lt;br&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;//create 4 threads&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt;(i = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; ; i &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;; i++)&amp;#123;&lt;br&gt;    pthread_create(&amp;amp;thread[i], &lt;span class=&quot;hljs-literal&quot;&gt;NULL&lt;/span&gt;, hello_fun, &lt;span class=&quot;hljs-literal&quot;&gt;NULL&lt;/span&gt;);&lt;br&gt;  &amp;#125;&lt;br&gt;  &lt;span class=&quot;hljs-comment&quot;&gt;//wait for all threads to finish&lt;/span&gt;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;for&lt;/span&gt;(i = &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt; ; i &amp;lt; &lt;span class=&quot;hljs-number&quot;&gt;4&lt;/span&gt;; i++)&amp;#123;&lt;br&gt;    pthread_join(thread[i], &lt;span class=&quot;hljs-literal&quot;&gt;NULL&lt;/span&gt;);&lt;br&gt;  &amp;#125;&lt;br&gt;  &lt;span class=&quot;hljs-keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;;&lt;br&gt;&amp;#125;&lt;br&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/pid.png&quot;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;PID&lt;/code&gt; vs &lt;code&gt;TID&lt;/code&gt; vs &lt;code&gt;pthread_t&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;PID&lt;/code&gt; PID 进程号，四个线程均一样，唯一&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;TID&lt;/code&gt; 不一样，由 OS 生成，同一机器上所有 tid 唯一&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;pthread_t&lt;/code&gt; 由&lt;code&gt;pthreads&lt;/code&gt;库生成，用来识别线程，不同进程可能有相同 &lt;code&gt;pthread_t id&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;可以看到在&lt;code&gt;htop&lt;/code&gt;中直接把 tid 作为 pid 表示，类似进程的树型结构：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/2019/11/13/ThreadAndProcess-2019-11-13/busy.png&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;POSIX&quot;&gt;&lt;a href=&quot;#POSIX&quot; class=&quot;headerlink&quot; title=&quot;POSIX&quot;&gt;&lt;/a&gt;POSIX&lt;/h4&gt;&lt;p&gt;一种 Unix 系统特定的实现标准，其余很多系统均兼容，包括 Windows&lt;/p&gt;
+&lt;h2 id=&quot;reference&quot;&gt;&lt;a href=&quot;#reference&quot; class=&quot;headerlink&quot; title=&quot;reference&quot;&gt;&lt;/a&gt;reference&lt;/h2&gt;&lt;p&gt;下面特别是 IC221 ，都是非常好的学习资料&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://pages.mtu.edu/~shene/NSF-3/e-Book/FUNDAMENTALS/thread-management.html&quot;&gt;Thread-Management&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.usna.edu/Users/cs/bilzor/ic221/calendar.php?load=home&quot;&gt;IC221 - Systems Programming&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="进程与线程" scheme="http://r.piggy.lol/tags/%E8%BF%9B%E7%A8%8B%E4%B8%8E%E7%BA%BF%E7%A8%8B/"/>
+    
+    <category term="Linux" scheme="http://r.piggy.lol/tags/Linux/"/>
+    
+  </entry>
+  
+</feed>
