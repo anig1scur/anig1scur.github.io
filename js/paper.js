@@ -41,7 +41,7 @@ window.addEventListener('DOMContentLoaded', () => {
       darkmode.turnOnDarkmode()
       checkbox.checked = true
     }
-    checkbox.addEventListener('change', function() {
+    checkbox && checkbox.addEventListener('change', function() {
       if (this.checked) {
         darkmode.turnOnDarkmode()
         localStorage.setItem('isDarkMode', true)
@@ -54,9 +54,10 @@ window.addEventListener('DOMContentLoaded', () => {
 
   // sidebar
   ;(() => {
-    let toggle = true
+    let toggle = true;
     const sidebar = document.querySelector('.sidebar')
     const sidebarButton = document.querySelector('.sidebar__button')
+
     sidebarButton && sidebarButton.addEventListener('click', function() {
       toggle
         ? sidebar.classList.add('sidebar--expend')
