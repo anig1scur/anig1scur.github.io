@@ -5,7 +5,7 @@
 # Site
 title: Ac3r's Blog
 subtitle: lol
-description: Whatever comes to mind （瞎写）
+description: Whatever comes to mind, randomly write here.
 keywords:
 author: Piggy
 language: en
@@ -113,7 +113,7 @@ feed:
   enable: true
   type: atom
   path: atom.xml
-  limit: 20
+  limit: 30
   hub:
   content:
   content_limit: 108000
