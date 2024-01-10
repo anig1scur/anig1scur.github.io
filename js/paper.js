@@ -31,6 +31,17 @@ Darkmode.prototype.turnOffDarkmode = function() {
   this.metaThemeColor.content = this.metaThemeColorCatch
 }
 
+var simulateClick = function (elem) {
+	// Create our event (with options)
+	var evt = new MouseEvent('click', {
+		bubbles: true,
+		cancelable: true,
+		view: window
+	});
+	// If cancelled, don't dispatch our event
+	var canceled = !elem.dispatchEvent(evt);
+};
+
 window.addEventListener('DOMContentLoaded', () => {
   // darkmode
   ;(() => {
@@ -57,14 +68,21 @@ window.addEventListener('DOMContentLoaded', () => {
     let toggle = true;
     const sidebar = document.querySelector('.sidebar')
     const sidebarButton = document.querySelector('.sidebar__button')
+    const sidebarMask = document.querySelector('.sidebar__mask')
+
+    sidebarMask.addEventListener('click', function() {
+        simulateClick(sidebarButton)
+    })
 
     sidebarButton && sidebarButton.addEventListener('click', function() {
+      toggle ? sidebarMask.style.display = 'block' : sidebarMask.style.display = 'none'
       toggle
         ? sidebar.classList.add('sidebar--expend')
         : sidebar.classList.remove('sidebar--expend')
       toggle
         ? sidebarButton.classList.add('sidebar__button--expend')
         : sidebarButton.classList.remove('sidebar__button--expend')
+
       toggle = !toggle
     })
   })()
