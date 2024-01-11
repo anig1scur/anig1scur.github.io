@@ -6,7 +6,7 @@
   <link href="http://r.piggy.lol/atom.xml" rel="self"/>
   
   <link href="http://r.piggy.lol/"/>
-  <updated>2024-01-08T16:11:34.888Z</updated>
+  <updated>2024-01-11T05:32:41.907Z</updated>
   <id>http://r.piggy.lol/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2023-review</title>
+    <link href="http://r.piggy.lol/2024/01/11/2023-review/"/>
+    <id>http://r.piggy.lol/2024/01/11/2023-review/</id>
+    <published>2024-01-11T04:45:07.000Z</published>
+    <updated>2024-01-11T05:32:41.907Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;我猜 50 年后如果还活着，回顾起陈年往事应该会觉得 2023 是我生命中比较重要的一年吧。前几天在公司内网填年度个人总结，好像并想不起来具体做了什么，于是打开 github 一个格子一个格子地点开看，有时很绿，有时很浅，从里面摘抄有内容的写。&lt;/p&gt;
+&lt;h2 id=&quot;一月&quot;&gt;&lt;a href=&quot;#一月&quot; class=&quot;headerlink&quot; title=&quot;一月&quot;&gt;&lt;/a&gt;一月&lt;/h2&gt;&lt;p&gt;1 月元旦，新冠还没完全好，心脏时不时隐隐作痛，但固执地跟着几个同事去了雨崩爬山。虫草线那天的记忆犹新，人生第一次站在 4500 海拔的地方吧，在山顶被赠予一颗枇杷润喉糖，眼前的清爽和喉咙的清凉混杂让一种奇异的感觉袭来。下山后在客栈大厅和路上同行的人凑了一大桌子吃饭，被安利了尼泊尔 EBC。有机会的话还想去一趟。&lt;/p&gt;
+&lt;h2 id=&quot;二月&quot;&gt;&lt;a href=&quot;#二月&quot; class=&quot;headerlink&quot; title=&quot;二月&quot;&gt;&lt;/a&gt;二月&lt;/h2&gt;&lt;p&gt;2 月份应该是回家过年，我表现得很乖，大概没有吵架。和高中宿舍一起吃了饭，感觉没太多想说的，大家都在各自的人生轨迹上慢慢努力着。有循规蹈矩，也有出乎意料，没有什么特别印象深刻的东西了。回北京后重新和 z 出去玩，在雪后的香八拉遇到一个奇怪的不带手机不识地图的人，我们将近两年没有说话（her fault ! her fault!）但这次并没有觉得尴尬或奇怪。&lt;/p&gt;
+&lt;h2 id=&quot;三月&quot;&gt;&lt;a href=&quot;#三月&quot; class=&quot;headerlink&quot; title=&quot;三月&quot;&gt;&lt;/a&gt;三月&lt;/h2&gt;&lt;p&gt;北京的春天很难得，我最喜欢了！大部分中午会下楼在公司对面的樱花 &amp;#x2F; 梨花下面的椅子静坐一会儿。&lt;/p&gt;
+&lt;p&gt;有一个特别喜欢的同事离职了 I’m so sad.&lt;/p&gt;
+&lt;h2 id=&quot;四月&quot;&gt;&lt;a href=&quot;#四月&quot; class=&quot;headerlink&quot; title=&quot;四月&quot;&gt;&lt;/a&gt;四月&lt;/h2&gt;&lt;h2 id=&quot;五月&quot;&gt;&lt;a href=&quot;#五月&quot; class=&quot;headerlink&quot; title=&quot;五月&quot;&gt;&lt;/a&gt;五月&lt;/h2&gt;&lt;h2 id=&quot;六月&quot;&gt;&lt;a href=&quot;#六月&quot; class=&quot;headerlink&quot; title=&quot;六月&quot;&gt;&lt;/a&gt;六月&lt;/h2&gt;&lt;h2 id=&quot;七月&quot;&gt;&lt;a href=&quot;#七月&quot; class=&quot;headerlink&quot; title=&quot;七月&quot;&gt;&lt;/a&gt;七月&lt;/h2&gt;&lt;h2 id=&quot;八月&quot;&gt;&lt;a href=&quot;#八月&quot; class=&quot;headerlink&quot; title=&quot;八月&quot;&gt;&lt;/a&gt;八月&lt;/h2&gt;&lt;p&gt;租的房子到期了，签合同后被难缠的新房东摆了一道，哭了很久。哎，遇到不讲理的人还是不知道如何应对。后又找了一套，房东和我事儿都不多，客厅望出去有一树的银杏叶，住起来很舒服。&lt;/p&gt;
+&lt;h2 id=&quot;九月&quot;&gt;&lt;a href=&quot;#九月&quot; class=&quot;headerlink&quot; title=&quot;九月&quot;&gt;&lt;/a&gt;九月&lt;/h2&gt;&lt;h2 id=&quot;十月&quot;&gt;&lt;a href=&quot;#十月&quot; class=&quot;headerlink&quot; title=&quot;十月&quot;&gt;&lt;/a&gt;十月&lt;/h2&gt;&lt;p&gt;国庆去了亚丁大转山，但没转完。回来后写了 2w 字游记。&lt;/p&gt;
+&lt;h2 id=&quot;十一月&quot;&gt;&lt;a href=&quot;#十一月&quot; class=&quot;headerlink&quot; title=&quot;十一月&quot;&gt;&lt;/a&gt;十一月&lt;/h2&gt;&lt;h2 id=&quot;十二月&quot;&gt;&lt;a href=&quot;#十二月&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>用 Latex 写一个技术合同模板</title>
