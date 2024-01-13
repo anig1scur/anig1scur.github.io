@@ -31,7 +31,7 @@ article.post-view__article .article__content h4,
 article.post-view__article .article__content h5,
 article.post-view__article .article__content h6,
 article.post-view__article .article__content p {
-  padding: 1em 0;
+  padding: 0.6em 0;
 }
 article.post-view__article .article__content h1,
 article.post-view__article .article__content h2 {
@@ -57,7 +57,7 @@ article.post-view__article .article__content ol,
 article.post-view__article .article__content table,
 article.post-view__article .article__content code {
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
 }
 article.post-view__article .article__content small {
   font-size: 1rem;
@@ -82,7 +82,7 @@ article.post-view__article .article__content .gutter {
 }
 article.post-view__article .article__content code.hljs {
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   width: 100%;
   overflow-x: scroll;
   max-width: 80rem;
@@ -94,7 +94,7 @@ article.post-view__article .article__content table code.hljs {
 }
 article.post-view__article .article__content code:not(.hljs) {
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   color: #333;
   font-weight: bold;
   border: 1px solid #82cd61;
@@ -175,7 +175,7 @@ article.post-view__article .article__content .mjx-chtml {
   padding: 3rem 0;
   background: #82cd61;
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
 }
 @media screen and (max-width: 580px) {
   .footer {
@@ -203,7 +203,7 @@ article.post-view__article .article__content .mjx-chtml {
 }
 .head__inner p {
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
 }
 .bottom-line-1 {
   height: 3px;
@@ -290,7 +290,7 @@ article.post-view__article .article__content .mjx-chtml {
 }
 .posts-item__excerpt {
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   margin: 2rem 0 0 0;
   color: #444;
 }
@@ -301,7 +301,7 @@ article.post-view__article .article__content .mjx-chtml {
 .post__date {
   position: relative;
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   display: inline-block;
 }
 .post__tags::before,
@@ -381,7 +381,7 @@ article.post-view__article .article__content .mjx-chtml {
 }
 .sidebar {
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   padding: 2rem;
   margin: 2rem;
   border-left: 1px solid #d3d3d3;
@@ -501,7 +501,7 @@ article.post-view__article .article__content .mjx-chtml {
 .paginator {
   text-align: center;
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   padding: 5rem 0;
 }
 .paginator a {
@@ -556,7 +556,7 @@ article.post-view__article .article__content .mjx-chtml {
 .pre-next .pre-button,
 .pre-next .next-button {
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   padding: 1em;
   position: relative;
 }
@@ -603,7 +603,7 @@ article.post-view__article .article__content .mjx-chtml {
   min-height: 2.2rem;
   text-align: left;
   font-size: 1.4rem;
-  line-height: 2.2rem;
+  line-height: 2.3rem;
   margin: 0.2em 0;
   overflow: hidden;
   text-overflow: ellipsis;
