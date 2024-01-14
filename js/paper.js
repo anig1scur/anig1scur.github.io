@@ -77,8 +77,8 @@ window.addEventListener('DOMContentLoaded', () => {
       sidebarButton && sidebarButton.addEventListener('click', function () {
 
         setTimeout(() => {
-          toggle ? sidebarMask.style.display = 'block' : sidebarMask.style.display = 'none'
-        }, 200)
+          toggle ? sidebarMask.style.display = 'none' : sidebarMask.style.display = 'block'
+        }, 300)
 
         toggle
           ? sidebar.classList.add('sidebar--expend')
