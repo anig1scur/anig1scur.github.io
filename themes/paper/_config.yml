@@ -28,7 +28,7 @@ social:
   # Twitter: https://twitter.com/yours
   # 知乎: https://www.zhihu.com/people/yours
   # 掘金: https://juejin.im/user/yours
-  X: https://twitter.com/anigo_o
+  t: https://t.me/capricious_eunice
   rss: https://r.piggy.lol/atom.xml
   Mail: mailto:anigiscur@gmail.com
   Douban: https://www.douban.com/people/168117050/
@@ -64,6 +64,6 @@ comment:
   avatar: mp
 
   # utterances 需要的参数
-  repo: 'anig1scur/SDL'
+  repo: 'anig1scur/anig1scur.github.io'
   issue_term: 'pathname'
   theme: 'preferred-color-scheme'
