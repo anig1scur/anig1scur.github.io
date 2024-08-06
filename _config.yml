@@ -103,7 +103,7 @@ highlight:
 deploy:
   type: git
   repo: git@github.com:anig1scur/anig1scur.github.io.git
-  branch: master
+  branch: gh-pages
 
 favicon: /favicon.ico
 
