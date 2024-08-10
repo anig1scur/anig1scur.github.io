@@ -15,7 +15,9 @@ function Darkmode () {
 }
 Darkmode.prototype.turnOnDarkmode = function () {
   // fix chrome bug
-  document.querySelector('html').style.background = '#ffffff'
+  document.querySelector('html').style.background = '#cdcdcd'
+  document.documentElement.style.cssText = "--color-main: #7d329e";
+
   this.mask.classList.add('darkmode-mask--dark')
   // invert the images color
   // so that they can render with the right color
@@ -23,12 +25,26 @@ Darkmode.prototype.turnOnDarkmode = function () {
 
   // set <meta name="theme-color" content="xxxx">
   this.metaThemeColorCatch = this.metaThemeColor.content
-  this.metaThemeColor.setAttribute('content', '#333') // dark-mode tab color #333
+
+  document.body.style.color = '#141516'
+  document.body.style.backgroundColor = '#c9c6c1'
+  const sidebar = document.getElementsByClassName("sidebar");
+  if (sidebar) {
+    sidebar[0].style.backgroundColor = '#c9c6c1'
+  }
 }
 Darkmode.prototype.turnOffDarkmode = function () {
+  document.documentElement.style.cssText = '--color-main: #82cd61';
   this.mask.classList.remove('darkmode-mask--dark')
   invertImgs(this.imgs)
   this.metaThemeColor.content = this.metaThemeColorCatch
+
+  document.body.style.color = '#333'
+  document.body.style.backgroundColor = '#fdfaf6'
+  const sidebar = document.getElementsByClassName("sidebar");
+  if (sidebar) {
+    sidebar[0].style.backgroundColor = '#fdfaf6'
+  }
 }
 
 var simulateClick = function (elem) {
