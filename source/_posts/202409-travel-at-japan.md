@@ -169,8 +169,8 @@ tags: travel
 
 离开海边岩滩，往回走的时候意外发现岛上有一片静谧无人的森林，小声放着悠扬的纯音乐。我一直沿着山路走，不时有两三行人，走到被围栏拦住的边缘见到惊喜的一景。
 
-<video width="100%" height="auto" controls>
-  <source src="./tomorrow_is_another_day.mp4" type="video/mp4">
+<video width="100%" height="auto" preload="metadata" autoplay loop muted playsinline >
+  <source src="./jiangzhidao.mp4" type="video/mp4">
 </video>
 
 最后在离开镰仓前看到了落日余晖中的富士山。我恋恋不舍地拍了许久。
@@ -229,6 +229,6 @@ tags: travel
 最后，tomorrow is another day.
 
 
-<video width="100%" height="auto" controls>
+<video width="100%" height="auto" preload="metadata" autoplay loop muted playsinline >
   <source src="./tomorrow_is_another_day.mp4" type="video/mp4">
 </video>
