@@ -28,11 +28,11 @@ social:
   # Twitter: https://twitter.com/yours
   # 知乎: https://www.zhihu.com/people/yours
   # 掘金: https://juejin.im/user/yours
-  t: https://t.me/capricious_eunice
+  # t: https://t.me/capricious_eunice
   rss: https://r.piggy.lol/atom.xml
   Mail: mailto:anigiscur@gmail.com
   Douban: https://www.douban.com/people/168117050/
-  ActivityPub: https://piggy.lol/ac3r
+  ActivityPub: https://mastodon.social/@ac3r
 
 
   # and more, you can add other link by the same way
